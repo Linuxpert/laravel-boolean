@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Postcard;
+
 class GuestController extends Controller
 {
     public function home() {
@@ -21,12 +23,11 @@ class GuestController extends Controller
             'sender' => 'required|string',
             'address' => 'required|string',
             'text' => 'required|string',
-            'image' => 'required|image',
         ]);
 
-        $imageFile = $data['image'];
+        $imageFile = $request -> file('image');
         $imageName = rand(100000, 999999) . '_' . time()
-                    . '_' . $imageFile -> getClientOriginalExtension();
+                    . '.' . $imageFile -> getClientOriginalExtension();
         $imageFile -> storeAs('/postcards/', $imageName, 'public');
         $data['image'] = $imageName;
 
