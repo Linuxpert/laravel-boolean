@@ -1,6 +1,6 @@
 <header>
     <h1>
-        Videogames
+        Postcards
     </h1>
 
     @auth
